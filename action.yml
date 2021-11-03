@@ -16,3 +16,7 @@ inputs:
     description: Set the sonar.projectBaseDir analysis property
     required: false
     default: .
+  path:
+    description: Set working directory
+    required: false
+    default: .
