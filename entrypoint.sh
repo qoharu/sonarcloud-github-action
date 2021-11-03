@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+pushd ${INPUT_PATH}
 
 if [[ -z "${SONAR_TOKEN}" ]]; then
   echo "Set the SONAR_TOKEN env variable."
@@ -21,4 +22,6 @@ if [[ -z "${SONARCLOUD_URL}" ]]; then
   SONARCLOUD_URL="https://sonarcloud.io"
 fi
 unset JAVA_HOME
-cd ${INPUT_PATH} && sonar-scanner -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} -Dsonar.host.url=${SONARCLOUD_URL} ${INPUT_ARGS} && cd ..
+
+sonar-scanner -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} -Dsonar.host.url=${SONARCLOUD_URL} ${INPUT_ARGS}
+popd
