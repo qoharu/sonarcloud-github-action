@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-pushd ${INPUT_PATH}
+pushd ${INPUT_WORKINGDIRECTORY}
 
 if [[ -z "${SONAR_TOKEN}" ]]; then
   echo "Set the SONAR_TOKEN env variable."
