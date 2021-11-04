@@ -1,7 +1,10 @@
 #!/bin/bash
 
 set -e
-pushd ${INPUT_WORKINGDIRECTORY}
+
+if [[ -z "${WORKING_DIRECTORY}" ]]; then
+  WORKING_DIRECTORY=.
+fi
 
 if [[ -z "${SONAR_TOKEN}" ]]; then
   echo "Set the SONAR_TOKEN env variable."
@@ -23,5 +26,6 @@ if [[ -z "${SONARCLOUD_URL}" ]]; then
 fi
 unset JAVA_HOME
 
+pushd ${WORKING_DIRECTORY}
 sonar-scanner -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} -Dsonar.host.url=${SONARCLOUD_URL} ${INPUT_ARGS}
 popd
